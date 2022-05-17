@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 14
           token: ${{ secrets.TOKEN }}
-      - name: Publish to NPMJS
+      - run: sudo npm ci
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
