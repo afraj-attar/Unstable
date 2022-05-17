@@ -24,7 +24,6 @@ jobs:
         with:
           node-version: 14
           token: ${{ secrets.TOKEN }}
-          registry: https://registry.npmjs.org/
       - name: Publish to NPMJS
       - run: npm publish --access public
         env:
