@@ -14,7 +14,8 @@ jobs:
         with:
           node-version: 14
       - run: sudo npm ci
-
+      
+  # Publish to GitHub Package Registry
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
@@ -24,6 +25,23 @@ jobs:
         with:
           node-version: 14
           token: ${{ secrets.TOKEN }}
-          registry-url: 'https://registry.npmjs.org'
-      - run: sudo npm ci
+          registry-url: https://npm.pkg.github.com/
       - run: npm publish --access public
+  
+  # Publish to npm js
+  publish-npmjs:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          token: ${{ secrets.TOKEN }}
+          registry-url: https://npm.pkg.github.com/
+      - name: Publish to NPMJS
+      - run: |
+          npm config set //registry.npmjs.org/
+          npm config set scope "@afraj-attar"
+          npm config list
+          npm publish --access public
