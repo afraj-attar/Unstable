@@ -24,7 +24,8 @@ jobs:
         with:
           node-version: 14
           token: ${{ secrets.TOKEN }}
+          registry: https://registry.npmjs.org/
       - run: sudo npm ci
-      - run: npm publish --access public --registry=https://registry.npmjs.org/
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
