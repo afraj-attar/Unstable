@@ -14,12 +14,13 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
-          token: ${{ secrets.TOKEN }}
-      - run: |
-          npm set scope="@afraj-attar"
-          npm set token=${{ secrets.TOKEN }}
-          npm config list
-          npm ci
-          npm publish --access public
+      - run: npm ci
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
+      - uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
