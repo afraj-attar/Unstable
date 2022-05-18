@@ -16,8 +16,8 @@ jobs:
           token: ${{ secrets.TOKEN }}
           registry-url: https://registry.npmjs.org
       - run: |
-          npm set registry https://registry.npmjs.org/
-          npm set scope "@afraj-attar"
+          npm set registry=https://registry.npmjs.org/
+          npm set scope="@afraj-attar"
           npm set token=${{ secrets.TOKEN }}
           npm config list
           npm publish --access public
