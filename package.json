@@ -6,9 +6,6 @@
   "author": "Afraj Attar",
   "homepage": "https://afraj-attar.github.io/Unstable",
   "license": "ISC",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/afraj-attar"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/afraj-attar/Unstable.git"
