@@ -6,17 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-      - run: sudo npm ci
-
   publish-gpr:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,7 +15,12 @@ jobs:
           node-version: 14
           token: ${{ secrets.TOKEN }}
           registry-url: https://registry.npmjs.org
-      - run: npm set registry https://registry.npmjs.org/
-      - run: npm publish --access public
+      - run: |
+        npm set registry https://registry.npmjs.org/
+        npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+        npm set scope "@afraj-attar"
+        npm config list
+        npm publish --access public
+
         env:
           NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
