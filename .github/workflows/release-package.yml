@@ -14,9 +14,11 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
+          always-auth: true
       - run: npm ci
-      - run: echo //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN} > ~/.npmrc
-      - run: npm publish
+      - run: |
+             npm config set '//@afraj-attar/:_authToken' '${NODE_AUTH_TOKEN}'
+             npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
       - uses: actions/setup-node@v3
