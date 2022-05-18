@@ -16,11 +16,10 @@ jobs:
           token: ${{ secrets.TOKEN }}
           registry-url: https://registry.npmjs.org
       - run: |
-        npm set registry https://registry.npmjs.org/
-        npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-        npm set scope "@afraj-attar"
-        npm config list
-        npm publish --access public
-
+          npm set registry https://registry.npmjs.org/
+          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+          npm set scope "@afraj-attar"
+          npm config list
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
