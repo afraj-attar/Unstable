@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 14
           token: ${{ secrets.TOKEN }}
-          registry: https://registry.npmjs.org/
+          registry-url: https://registry.npmjs.org/
       - run: sudo npm ci
       - run: |
           npm set registry=https://registry.npmjs.org/
